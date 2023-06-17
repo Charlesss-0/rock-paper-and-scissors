@@ -1,1 +1,1 @@
-# rock-paper-and-scissors
+Just starting out a new simple rock paper scissors project
