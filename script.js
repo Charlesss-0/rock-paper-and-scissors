@@ -1,34 +1,38 @@
 function getComputerChoice() {
-    let randomValue = Math.floor( Math.random() * 3 ) + 1
+    const computerChoice = Math.floor( Math.random() * 15 ) + 1
 
-    if (randomValue === 1) {
+    if (computerChoice <= 5) {
         return 'Rock'
-    } else if (randomValue === 2) {
+    } else if (computerChoice <= 10) {
         return 'Paper'
     } else {
         return 'Scissors'
     }
 }
 
-function playRound(playerSelection, computerSelection) {
-    let playerRound = playerSelection + computerSelection
-    if (playerSelection === rock) {
-        console.log(`Player chose ${rock}, Computer chose ${computerSelection}`)
-    } else if (playerSelection === paper) {
-        console.log(`Player chose ${paper}, Computer chose ${computerSelection}`)
+function game() {
+    let playerSelection = prompt('Choose wisely! Rock Paper Scissors')
+    let computerChoice = getComputerChoice()
+
+    if (playerSelection.toUpperCase() === 'rock' || playerSelection.toLowerCase() === 'rock') {
+        return `Player chose ${playerSelection} and computer chose ${computerChoice}`
+
+    } else if (playerSelection.toUpperCase() === 'paper' || playerSelection.toLowerCase() === 'paper') {
+        return `Player chose ${playerSelection} and computer chose ${computerChoice}`
+
+    } else if (playerSelection.toUpperCase() === 'scissors' || playerSelection.toLowerCase() === 'scissors') {
+        return `Player chose ${playerSelection} and computer chose ${computerChoice}`
+
     } else {
-        console.log(`Player chose ${scissor}, Computer chose ${computerSelection}`)
-    }
-    return playerRound
-}
-
-const playerChoice = prompt('Choose wisely! Rock Paper Scissors')
-const computerChoice = getComputerChoice()
-console.log(playRound(playerChoice, computerChoice))
-
-
-function game(round) {
-    for (let i = 1; i < round.length; i++) {
+        return 'That is not a valid selection, please try again!'
 
     }
 }
+
+function gameLoop() {
+    for (let i = 1; i <= 10; i++) {
+        console.log( game() )
+    }
+}
+
+gameLoop()
