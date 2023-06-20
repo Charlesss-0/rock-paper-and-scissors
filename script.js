@@ -6,19 +6,16 @@ let resultsEl = document.querySelector('#results')
 rockEl.addEventListener('click', () => {
     playGame('rock')
     gameScore('rock')
-    // clearRound()
 })
 
 paperEl.addEventListener('click', () => {
     playGame('paper')
     gameScore('paper')
-    // clearRound()
 })
 
 scissorsEl.addEventListener('click', () => {
     playGame('scissors')
     gameScore('paper')
-    // clearRound()
 })
 
 let round = 1
@@ -45,15 +42,16 @@ function playGame(userChoice) {
 } // Creates a new element using the user and computer selection and appends it to resultsEl
 
 function gameScore(userChoice) {
+
     const computerChoice = getComputerChoice()
     let result
 
     if (userChoice === computerChoice) {
         result = `It's a tie!`
     } else if (
-        (userChoice === 'rock' && computerChoice === 'scissors') ||
-        (userChoice === 'paper' && computerChoice === 'rock') ||
-        (userChoice === 'scissors' && computerChoice === 'paper') 
+        (userChoice === 'rock' || computerChoice === 'scissors') ||
+        (userChoice === 'paper' || computerChoice === 'rock') ||
+        (userChoice === 'scissors' || computerChoice === 'paper') 
     ) {
         result = `You win!`
     } else {
@@ -67,10 +65,3 @@ function gameScore(userChoice) {
 
     round++
 } // Keeps track of the rounds and lets the user know who wins
-
-// function clearRound() {
-//     let clear = resultsEl
-//     while (clear.firstChild) {
-//         clear.removeChild(clear.lastChild);
-//     }
-// }

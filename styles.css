@@ -14,16 +14,17 @@ body {
     background-color: #555;
 }
 
+header h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
 #results {
     height: 80vh;
     display: flex;
     flex-direction: column;
     gap: 4rem;
     align-items: center;
-}
-
-#results h1 {
-    font-size: 2.5rem;
 }
 
 .user-select {
