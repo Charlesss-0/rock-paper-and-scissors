@@ -6,19 +6,19 @@ let resultsEl = document.querySelector('#results')
 rockEl.addEventListener('click', () => {
     playGame('rock')
     gameScore('rock')
-    clearRound()
+    // clearRound()
 })
 
 paperEl.addEventListener('click', () => {
     playGame('paper')
     gameScore('paper')
-    clearRound()
+    // clearRound()
 })
 
 scissorsEl.addEventListener('click', () => {
     playGame('scissors')
     gameScore('paper')
-    clearRound()
+    // clearRound()
 })
 
 let round = 1
@@ -68,9 +68,9 @@ function gameScore(userChoice) {
     round++
 } // Keeps track of the rounds and lets the user know who wins
 
-function clearRound() {
-    let clear = resultsEl
-    while (clear.firstChild) {
-        clear.removeChild(clear.lastChild);
-    }
-}
+// function clearRound() {
+//     let clear = resultsEl
+//     while (clear.firstChild) {
+//         clear.removeChild(clear.lastChild);
+//     }
+// }
