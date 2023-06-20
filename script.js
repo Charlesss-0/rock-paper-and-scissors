@@ -1,38 +1,76 @@
+const rockEl = document.querySelector('#rock')
+const paperEl = document.querySelector('#paper')
+const scissorsEl = document.querySelector('#scissors')
+let resultsEl = document.querySelector('#results')
+
+rockEl.addEventListener('click', () => {
+    playGame('rock')
+    gameScore('rock')
+    clearRound()
+})
+
+paperEl.addEventListener('click', () => {
+    playGame('paper')
+    gameScore('paper')
+    clearRound()
+})
+
+scissorsEl.addEventListener('click', () => {
+    playGame('scissors')
+    gameScore('paper')
+    clearRound()
+})
+
+let round = 1
+
 function getComputerChoice() {
-    const computerChoice = Math.floor( Math.random() * 15 ) + 1
+    const computerChoice = Math.floor( Math.random() * 3 ) + 1
 
-    if (computerChoice <= 5) {
-        return 'Rock'
-    } else if (computerChoice <= 10) {
-        return 'Paper'
+    if (computerChoice === 1) {
+        return 'rock'
+    } else if (computerChoice === 2) {
+        return 'paper'
     } else {
-        return 'Scissors'
+        return 'scissors'
     }
 }
 
-function game() {
-    let playerSelection = prompt('Choose wisely! Rock Paper Scissors')
-    let computerChoice = getComputerChoice()
+function playGame(userChoice) {
+    const computerChoice = getComputerChoice()
 
-    if (playerSelection.toUpperCase() === 'rock' || playerSelection.toLowerCase() === 'rock') {
-        return `Player chose ${playerSelection} and computer chose ${computerChoice}`
+    const selection = document.createElement('p')
+    selection.classList.add('user-select')
+    selection.textContent = `${userChoice.charAt(0).toUpperCase() + userChoice.slice(1) } vs ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}`
+    resultsEl.appendChild(selection)
+} // Creates a new element using the user and computer selection and appends it to resultsEl
 
-    } else if (playerSelection.toUpperCase() === 'paper' || playerSelection.toLowerCase() === 'paper') {
-        return `Player chose ${playerSelection} and computer chose ${computerChoice}`
+function gameScore(userChoice) {
+    const computerChoice = getComputerChoice()
+    let result
 
-    } else if (playerSelection.toUpperCase() === 'scissors' || playerSelection.toLowerCase() === 'scissors') {
-        return `Player chose ${playerSelection} and computer chose ${computerChoice}`
-
+    if (userChoice === computerChoice) {
+        result = `It's a tie!`
+    } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper') 
+    ) {
+        result = `You win!`
     } else {
-        return 'That is not a valid selection, please try again!'
+        result = `You lose!`
+    }
 
+    const roundResult = document.createElement('p')
+    roundResult.classList.add('round-result')
+    roundResult.textContent = `${round} ${result}`
+    resultsEl.appendChild(roundResult)
+
+    round++
+} // Keeps track of the rounds and lets the user know who wins
+
+function clearRound() {
+    let clear = resultsEl
+    while (clear.firstChild) {
+        clear.removeChild(clear.lastChild);
     }
 }
-
-function gameLoop() {
-    for (let i = 1; i <= 10; i++) {
-        console.log( game() )
-    }
-}
-
-gameLoop()
