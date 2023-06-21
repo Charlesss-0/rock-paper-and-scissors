@@ -3,65 +3,89 @@ const paperEl = document.querySelector('#paper')
 const scissorsEl = document.querySelector('#scissors')
 let resultsEl = document.querySelector('#results')
 
+let userScore = document.querySelector('#user-score')
+let computerScore = document.querySelector('#computer-score')
+let tieScore = document.querySelector('#tie-score')
+let rounds = document.querySelector('#round-score')
+
 rockEl.addEventListener('click', () => {
-    playGame('rock')
-    gameScore('rock')
+    playGame('🪨')
 })
 
 paperEl.addEventListener('click', () => {
-    playGame('paper')
-    gameScore('paper')
+    playGame('📄')
 })
 
 scissorsEl.addEventListener('click', () => {
-    playGame('scissors')
-    gameScore('paper')
+    playGame('✂️')
 })
 
-let round = 1
-
-function getComputerChoice() {
-    const computerChoice = Math.floor( Math.random() * 3 ) + 1
-
-    if (computerChoice === 1) {
-        return 'rock'
-    } else if (computerChoice === 2) {
-        return 'paper'
-    } else {
-        return 'scissors'
+function clearRound() {
+    while (resultsEl.firstChild) {
+        resultsEl.removeChild(resultsEl.lastChild);
     }
 }
 
+function getComputerChoice() {
+    const randomNumber = Math.floor( Math.random() * 3 )
+
+    const choices = ['🪨', '📄', '✂️']
+    const computerChoice = choices[randomNumber]
+
+    return computerChoice
+}
+
+let win = 0
+let lose = 0
+let tie = 0
 function playGame(userChoice) {
-    const computerChoice = getComputerChoice()
-
-    const selection = document.createElement('p')
-    selection.classList.add('user-select')
-    selection.textContent = `${userChoice.charAt(0).toUpperCase() + userChoice.slice(1) } vs ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}`
-    resultsEl.appendChild(selection)
-} // Creates a new element using the user and computer selection and appends it to resultsEl
-
-function gameScore(userChoice) {
+    clearRound()
 
     const computerChoice = getComputerChoice()
     let result
 
+    const selection = document.createElement('p')
+    selection.classList.add('user-select')
+    selection.textContent = `${userChoice} vs ${computerChoice}`
+    resultsEl.appendChild(selection)
+
     if (userChoice === computerChoice) {
         result = `It's a tie!`
+        tie++
+        tieScore.textContent = tie
     } else if (
-        (userChoice === 'rock' || computerChoice === 'scissors') ||
-        (userChoice === 'paper' || computerChoice === 'rock') ||
-        (userChoice === 'scissors' || computerChoice === 'paper') 
+        (userChoice === '🪨' && computerChoice === '✂️') ||
+        (userChoice === '📄' && computerChoice === '🪨') ||
+        (userChoice === '✂️' && computerChoice === '📄') 
     ) {
         result = `You win!`
+        win++
+        userScore.textContent = win
     } else {
-        result = `You lose!`
+        result = 'You lose!'
+        lose++
+        computerScore.textContent = lose
     }
 
     const roundResult = document.createElement('p')
     roundResult.classList.add('round-result')
-    roundResult.textContent = `${round} ${result}`
+    roundResult.textContent = `${result}`
     resultsEl.appendChild(roundResult)
 
+    roundScore()
+
+} // Creates a new element using the user and computer selection and appends it to resultsEl, determines who wins the round and stores the result at the top
+
+let round = 0
+const maxScore = 10
+function roundScore() {
     round++
-} // Keeps track of the rounds and lets the user know who wins
+    rounds.textContent = round
+
+        if (round == maxScore) {
+            win = 0
+            lose = 0
+            tie = 0
+            round = 0
+        } 
+}
