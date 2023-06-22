@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Rubik&display=swap');
 
+/* BASIC PAGE SETTINGS START */
 *,
 ::before,
 ::after {
@@ -20,38 +21,32 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+/* BASIC PAGE SETTINGS END */
+
+/* HEADER SECTION START */
+
+header {
+    padding: 5px;
+}
+
 header h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     text-align: center;
-    margin-top: 3rem;
+    margin: 20px auto;
 }
 
-header p {
-    text-align: center;
-    font-weight: 900;
-    margin-top: 10px;
-}
+/* HEADER SECTION END */
 
-.scores {
-    display: flex;
-}
-
-.user-and-computer {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    font-size: 2rem;
-}
+/* RESULTS SECTION START */
 
 #results {
-    height: 100%;
+    height: 20em;
     display: flex;
     flex-direction: column;
     gap: 4rem;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    margin: 5em auto;
 }
 
 #results p {
@@ -60,9 +55,35 @@ header p {
 
 .user-select {
     font-weight: 900;
-    font-size: 30px;
-    align-self: center;
+    font-size: 40px;
 }
+
+.round-result {
+    font-weight: 900;
+}
+
+#results h2 {
+    font-size: 40px;
+}
+
+.play-again {
+    height: 5em;
+    width: 15em;
+    background: #e0e0e0;
+    box-shadow: 4px 4px 5px #888,
+               -4px -4px 5px #fff;
+    color: #2e8a99;
+    border: none;
+    border-radius: 20px;
+    font: 900 24px Nunito, sans-serif;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+/* RESULTS SECTION END */
+
+/* USER SELECTION START */
 
 #userSelection {
     width: 100%;
@@ -70,15 +91,31 @@ header p {
     bottom: 0;
     left: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 15px;
-    padding: 10px;
 }
 
-#userSelection button,
-.play-again {
-    color: #2E8A99;
+.scores {
+    display: flex;
+}
+
+.scores p {
     flex: 1 1 auto;
+    text-align: center;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.button-container {
+    display: flex;
+    padding: 10px;
+    gap: 15px;
+}
+
+.button-container button{
+    height: 3em;
+    color: #2E8A99;
+    flex: 1;
     text-align: center;
     padding: 15px;
     border-radius: 20px;
@@ -89,23 +126,17 @@ header p {
     background: #e0e0e0;
     box-shadow:  3px 3px 4px #888,
                 -3px -3px 4px #ffffff;
+    font-size: 36px;
 }
 
-.round-result {
-    font-weight: 900;
-}
+/* USER SELECTION END */
 
-/* MEDIA QUERIES START */
+/* MEDIA QUERIES SECTION START */
 
-@media (max-width: 400px) {
-    .scores p {
-        padding: 0;
-        font-size: 15px;
-        flex: 1 1 auto;
-    }
-
-    header p {
-        margin: 0;
+@media (max-width: 800px) {
+    header {
+        display: flex;
+        flex-direction: column;
     }
 
     header h1 {
@@ -113,8 +144,31 @@ header p {
     }
 
     #results h2 {
-        font-size: 20px;
+        font-size: 16px;
+    }
+
+    #results p {
+        font-size: 30px;
+    }
+
+    .scores p {
+        flex: 1 1 auto;
+        font-size: 15px;
+    }
+
+    .scores {
+        display: flex;
+    }
+
+    .button-container button {
+        width: fit-content;
+        height: max-content;
+    }
+
+    .play-again {
+        margin-top: 13em;
+        width: 100%;
     }
 }
 
-/* MEDIA QUERIES END */
+/* MEDIA QUERIES SECTION END */
