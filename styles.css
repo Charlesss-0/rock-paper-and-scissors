@@ -90,12 +90,12 @@ header h1 {
 
 .selection {
     border: outset #555;
-    width: 15em;
-    height: 15em;
-    background: #ddd;
+    width: 25vw;
+    height: 31vh;
+    background: #eee;
     text-align: center;
     display: grid;
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: 5px 5px 0 #000;
 }
 
 .selection img {
@@ -131,9 +131,10 @@ header h1 {
     width: 40%;
     color: #000;
     text-align: center;
-    font: 900 30px Chakra Petch, sans-serif;
+    font: 900 25px Chakra Petch, sans-serif;
     animation: jumping 1s linear infinite;
     margin: auto;
+    margin-top: -1em;
 }
 
 @keyframes jumping {
@@ -241,40 +242,82 @@ footer h2 {
 
 /* MEDIA QUERIES SECTION START */
 
-@media (max-width: 800px) {
+@media (max-width: 450px) {
+    
+    html {
+        font-size: 35%;
+    }
 
-    #results {
-        height: 100%;
+    header {
+        padding: 3em 1em;
+    }
+
+    .title-container h1 {
+        font-size: 3.5rem;
+    }
+
+    .scores p {
+        font-size: 2rem;
+    }
+
+    .title-container::before {
+        width: 90%;
+        height: 19em;
     }
 
     header h1 {
         font-size: 30px;
     }
 
-    #results h2 {
-        font-size: 16px;
-    }
-
-    #results p {
-        font-size: 30px;
-    }
-
-    .scores p {
-        flex: 1 1 auto;
-        font-size: 15px;
-    }
-
-    .scores {
+    #results {
         display: flex;
+        justify-content: space-around;
+        gap: 0;
+        padding: 10px;
+        margin-top: 5em;
+    }
+
+    .selection {
+        width: 30vw;
+        height: 15vh;
+    }
+
+    .selection p {
+        font-size: 3rem;
+    }
+
+    .selection img {
+        width: 7em;
+    }
+
+    #results .selection-result h2 {
+        font-size: 3rem;
+    }
+
+    .choose-message {
+        position: absolute;
+        bottom: 15em;
+        left: 0;
+        right: 0;
+        width: 80%;
+    }
+
+    .button-container {
+        flex-direction: column;
     }
 
     .button-container button {
-        width: fit-content;
-        height: max-content;
+        width: 100%;
+        font-size: 4.5rem;
     }
 
-    .play-again {
-        width: 100%;
+    .end-message {
+        font-size: 3rem;
+        margin-top: 10em;
+    }
+
+    footer h2 {
+        font-size: 2rem;
     }
 }
 
