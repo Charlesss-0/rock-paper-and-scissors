@@ -5,80 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper and Scissors</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <header>
-        <!-- <div class="scores">
-            <p>
-                Your Score: 
-                <br>
-                <span id="user-score">0</span>
-            </p>
-            <p>
-                Computer score: 
-                <br>
-                <span id="computer-score">0</span>
-            </p>
-            <p>
-                Ties:
-                <br> 
-                <span id="tie-score">0</span>
-            </p>
-            <p>
-                Round:
-                <br> 
-                <span id="round-score">0</span>
-            </p>
-        </div> -->
-        <h1>
-            Choose Wisely!
-        </h1>
-        <h1>
-            Rock-Paper-Scissors
-        </h1>
+        <div class="title-container">
+            <h1>
+                Rock-Paper-Scissors
+            </h1>
+            <div class="scores">
+                <p>
+                    Your Score: 
+                    <br>
+                    <span id="user-score">0</span>
+                </p>
+                <p>
+                    Computer score: 
+                    <br>
+                    <span id="computer-score">0</span>
+                </p>
+                <p>
+                    Ties:
+                    <br> 
+                    <span id="tie-score">0</span>
+                </p>
+                <p>
+                    Round:
+                    <br> 
+                    <span id="round-score">0</span>
+                </p>
+            </div>
+        </div>
     </header>
     
-    <div id="results"></div>
+    <main>
+        <section id="game-section">
+            <div id="results">
+                <div class="selection">
+                    <p>
+                        YOU
+                    </p>
+                    <div class="player"></div>
+                </div>
+                <div class="selection-result">
+                    <h2>
+                        VS
+                    </h2>
+                    <div class="round-result"></div>
+                </div>
+                <div class="selection">
+                    <p>
+                        COMPUTER
+                    </p>
+                    <div class="computer"></div>
+                </div>
+            </div>
 
-    <div id="userSelection">
-        <div class="scores">
-            <p>
-                Your Score: 
-                <br>
-                <span id="user-score">0</span>
-            </p>
-            <p>
-                Computer score: 
-                <br>
-                <span id="computer-score">0</span>
-            </p>
-            <p>
-                Ties:
-                <br> 
-                <span id="tie-score">0</span>
-            </p>
-            <p>
-                Round:
-                <br> 
-                <span id="round-score">0</span>
-            </p>
-        </div>
+            <!-- <div id="userSelection"> -->
+                <div class="button-container"> 
+                    <button id="rock">
+                        <img src="./images/rock.png" alt="rock" id="rock-img">
+                    </button>
 
-        <div class="button-container"> 
-            <button id="rock">
-                🪨
-            </button>
+                    <button id="paper">
+                        <img src="./images/file.png" alt="paper" id="paper-img">
+                    </button>
 
-            <button id="paper">
-                📄
-            </button>
-
-            <button id="scissors">
-                ✂️
-            </button>
-        </div>
-    </div>
-
-    <script src="./script.js"></script>
+                    <button id="scissors">
+                        <img src="./images/scissors.png" alt="scissors" id="scissors-img">
+                    </button>
+                </div>
+            <!-- </div> -->
+        </section>
+    </main>
 </body>
 </html>

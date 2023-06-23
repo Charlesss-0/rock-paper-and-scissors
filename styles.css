@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
 
 /* BASIC PAGE SETTINGS START */
 *,
@@ -16,9 +18,10 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #2E8A99;
-    color: #fff;
-    font-family: 'Nunito', sans-serif;
+    /* background: #2E8A99 */
+    background: #000;
+    color: #000;
+    height: 100vh;
 }
 
 /* BASIC PAGE SETTINGS END */
@@ -26,73 +29,33 @@ body {
 /* HEADER SECTION START */
 
 header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-container {
+    width: 90em;
+    height: 14em;
     padding: 5px;
+    background-color: #ddd;
+    margin: 2em 0;
+}
+
+.title-container::before {
+    content: '';
+    width: 90.5em;
+    height: 14.5em;
+    position: absolute;
+    border: 4px solid #fff;
+    background-color: #000;
+    z-index: -1;
 }
 
 header h1 {
-    font-size: 3.5rem;
+    font: 900 3.5rem Chakra Petch, sans-serif;
     text-align: center;
     margin: 20px auto;
-}
-
-/* HEADER SECTION END */
-
-/* RESULTS SECTION START */
-
-#results {
-    height: 20em;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-}
-
-#results p {
-    font-size: 40px;
-}
-
-.user-select {
-    font-weight: 900;
-    font-size: 40px;
-}
-
-.round-result {
-    font-weight: 900;
-}
-
-#results h2 {
-    font-size: 40px;
-}
-
-.play-again {
-    height: 5em;
-    width: 15em;
-    background: #e0e0e0;
-    box-shadow: 4px 4px 5px #888,
-               -4px -4px 5px #fff;
-    color: #2e8a99;
-    border: none;
-    border-radius: 20px;
-    font: 900 24px Nunito, sans-serif;
-    text-align: center;
-    padding: 15px;
-    cursor: pointer;
-}
-
-/* RESULTS SECTION END */
-
-/* USER SELECTION START */
-
-#userSelection {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
 .scores {
@@ -104,29 +67,131 @@ header h1 {
     text-align: center;
     font-weight: 900;
     font-size: 24px;
+    font-family: 'Chakra Petch', sans-serif;
 }
+
+/* HEADER SECTION END */
+
+/* RESULTS SECTION START */
+
+#game-section {
+    display: grid;
+}
+
+#results {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    margin: 2em 0;
+    color: #ddd;
+}
+
+.selection {
+    outline: 10px outset #fff;
+    width: 20em;
+    height: 20em;
+    background: #ddd;
+    border-radius: 1em;
+    text-align: center;
+    display: grid;
+}
+
+.selection img {
+    width: 5em;
+}
+
+.selection div {
+    align-self: flex-start;
+    justify-self: center;
+    display: grid;
+    place-content: center;
+}
+
+#results .selection p {
+    margin-top: 10px;
+    font: 900 24px Chakra Petch, sans-serif;
+    color: #000;
+}
+
+#results p {
+    font-size: 40px;
+}
+
+.round-result {
+    font-weight: 900;
+    margin-top: 2em;
+}
+
+#results h2 {
+    font-size: 55px;
+    font-family: 'Chakra Petch';
+    text-align: center;
+    color: #ddd;
+}
+
+.selection-result {
+    padding: 10px;
+    width: 30%;
+}
+
+.play-again {
+    height: 5em;
+    width: 20em;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 20px;
+    font: 900 3em Chakra Petch, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    border: 10px outset;
+    justify-self: center;
+    margin-top: 1em;
+    transition: all .2s linear;
+}
+
+.play-again:hover {
+    transform: translate(4px, -4px);
+    box-shadow: -8px 8px 0 0 #fff;
+}
+
+/* RESULTS SECTION END */
+
+/* USER SELECTION START */
 
 .button-container {
     display: flex;
-    padding: 10px;
+    justify-content: space-around;
+    padding: 20px;
     gap: 15px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .button-container button{
+    width: 10em;
     height: 3em;
-    color: #2E8A99;
-    flex: 1;
-    text-align: center;
-    padding: 15px;
-    border-radius: 20px;
-    border: none;
-    text-shadow: 1px 1px 0 #000a;
+    border: solid;
     cursor: pointer;
-    font: 900 24px Nunito, sans-serif;
-    background: #e0e0e0;
-    box-shadow:  3px 3px 4px #888,
-                -3px -3px 4px #ffffff;
+    background: #ccc;
     font-size: 36px;
+    box-shadow: 8px 8px 0 #fff;
+    transition: all .2s linear;
+}
+
+.button-container button:hover {
+    box-shadow: -0px -0px 0 #fff;
+}
+
+.button-container button:active {
+    transform: scale(0.95);
+}
+
+.button-container button img {
+    width: 1.5em;
 }
 
 /* USER SELECTION END */

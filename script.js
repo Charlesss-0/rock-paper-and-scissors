@@ -5,56 +5,68 @@ let resultsEl = document.querySelector('#results')
 
 rockEl.addEventListener('click', () => {
     playGame('🪨')
+    playerEl.innerHTML = `
+        <img src="./images/rock.png">
+    `
 })
 
 paperEl.addEventListener('click', () => {
     playGame('📄')
+    playerEl.innerHTML = `
+        <img src="./images/file.png">
+    `
 })
 
 scissorsEl.addEventListener('click', () => {
     playGame('✂️')
+    playerEl.innerHTML = `
+        <img src="./images/scissors.png">
+    `
 })
 
-function clearRound() {
-    while (resultsEl.firstChild) {
-        resultsEl.removeChild(resultsEl.lastChild)
-    }
-} // clears the result every time the user selects a different options so that the options don't get stacked on top of each other
-
 function getComputerChoice() {
-    const randomNumber = Math.floor( Math.random() * 15 ) + 1
+    const randomNumber = Math.floor( Math.random() * 3)
 
-    if (randomNumber <= 5) {
-        return '🪨'
-    } else if (randomNumber <= 10) {
-        return '📄'
+    const choices = ['🪨', '📄', '✂️']
+    const computerChoice = choices[randomNumber]
+
+    if (computerChoice === '🪨') {
+        computerEl.innerHTML = `
+            <img src="./images/rock.png">
+        `
+    } else if (computerChoice === '📄') {
+        computerEl.innerHTML = `
+            <img src="./images/file.png">
+        `
     } else {
-        return '✂️'
+        computerEl.innerHTML = `
+            <img src="./images/scissors.png">
+        `
     }
 
-    // const choices = ['🪨', '📄', '✂️']
-    // const computerChoice = choices[randomNumber]
-
-    // return computerChoice
-}
+    return computerChoice
+} // Creates a random number and makes a selection based on the number it gets
 
 let userScore = document.querySelector('#user-score')
 let computerScore = document.querySelector('#computer-score')
 let tieScore = document.querySelector('#tie-score')
 
+let playerEl = document.querySelector('.player')
+let computerEl = document.querySelector('.computer')
+
+let rockImg = document.querySelector('#rock-img')
+let paperImg = document.querySelector('#paper-img')
+let scissorsImg = document.querySelector('#scissors-img')
+
+let roundResult = document.querySelector('.round-result')
+
 let win = 0
 let lose = 0
 let tie = 0
 function playGame(userChoice) {
-    clearRound()
 
     const computerChoice = getComputerChoice()
     let result
-
-    const selection = document.createElement('p')
-    selection.classList.add('user-select')
-    selection.textContent = `${userChoice} vs ${computerChoice}`
-    resultsEl.appendChild(selection)
 
     if (userChoice === computerChoice) {
         result = `It's a tie!`
@@ -74,10 +86,11 @@ function playGame(userChoice) {
         computerScore.textContent = lose
     }
 
-    const roundResult = document.createElement('p')
-    roundResult.classList.add('round-result')
-    roundResult.textContent = `${result}`
-    resultsEl.appendChild(roundResult)
+    roundResult.innerHTML = `
+        <h2>
+            ${result}
+        </h2>
+    `
 
     roundScore()    
 
@@ -87,49 +100,36 @@ let rounds = document.querySelector('#round-score')
 
 let round = 0
 function roundScore() {
-    const maxRound = 10
 
-    if (round < 11) {
+    const maxScore = 5
+
+    if (win === maxScore) {
+        playAgain()
+        // clearInterval()
+
+    } else if (lose === maxScore) {
+        playAgain()
+        // clearInterval()
+
+    } else {
         round++
         rounds.textContent = round
-
-        if (round === 11) {
-            round = 10
-            win = 10
-            lose = 10
-            tie = 10
-
-            rounds.textContent = round
-            userScore.textContent = win
-            computerScore.textContent = lose
-            tieScore.textContent = tie
-        }
     }
 
-    if (round === maxRound) {
-        const gameOver = true
-        
-        if (win > lose) {
-            resultsEl.innerHTML = `
-                <h2>
-                    You win by ${win} against ${lose}!
-                </h2>
-            `
+    if (win > maxScore || lose > maxScore) {
+        win = 0
+        lose = 0
+        tie = 0
 
-        } else if (lose > win) {
-            resultsEl.innerHTML = `
-                <h2>
-                    Computer wins by ${lose} against ${win}!
-                </h2>
-            `
+        userScore.textContent = win
+        computerScore.textContent = lose
 
-        } else {
-            if (gameOver) {
-                playAgain()
-            }
-        } 
-    }
+    } 
+
 } // Sets the number of rounds being played and stops when reached the limit so that the user can restart the game
+
+let selectionResult = document.querySelector('.selection-result')
+let gameSection = document.querySelector('#game-section')
 
 function playAgain() {
     const buttonEl = `
@@ -137,20 +137,11 @@ function playAgain() {
             Play Again
         </button>
     `
-    resultsEl.innerHTML = buttonEl
+    gameSection.innerHTML = buttonEl
 
     const playAgainBtn = document.querySelector('#playAgain-btn')
     playAgainBtn.addEventListener('click', () => {
-    round = 0
-    win = 0
-    lose = 0
-    tie = 0
-
-    resultsEl.textContent = ''
-    rounds.textContent = round
-    userScore.textContent = win
-    computerScore.textContent = lose
-    tieScore.textContent = tie
-})
+        return window.location.reload()
+    })
 
 } // Sets everything back to the beginning so that the user can start playing again
