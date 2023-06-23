@@ -60,6 +60,9 @@ let scissorsImg = document.querySelector('#scissors-img')
 
 let roundResult = document.querySelector('.round-result')
 
+let vsMessageEl = document.querySelector('.vs-message')
+let chooseMessageEl = document.querySelector('.choose-message')
+
 let win = 0
 let lose = 0
 let tie = 0
@@ -72,6 +75,9 @@ function playGame(userChoice) {
         result = `It's a tie!`
         tie++
         tieScore.textContent = tie
+        chooseMessageEl.remove()
+        vsMessageEl.remove()
+
     } else if (
         (userChoice === '🪨' && computerChoice === '✂️') ||
         (userChoice === '📄' && computerChoice === '🪨') ||
@@ -80,10 +86,15 @@ function playGame(userChoice) {
         result = `You win!`
         win++
         userScore.textContent = win
+        chooseMessageEl.remove()
+        vsMessageEl.remove()
+        
     } else {
         result = 'You lose!'
         lose++
         computerScore.textContent = lose
+        chooseMessageEl.remove()
+        vsMessageEl.remove()
     }
 
     roundResult.innerHTML = `
@@ -105,26 +116,14 @@ function roundScore() {
 
     if (win === maxScore) {
         playAgain()
-        // clearInterval()
 
     } else if (lose === maxScore) {
         playAgain()
-        // clearInterval()
 
     } else {
         round++
         rounds.textContent = round
     }
-
-    if (win > maxScore || lose > maxScore) {
-        win = 0
-        lose = 0
-        tie = 0
-
-        userScore.textContent = win
-        computerScore.textContent = lose
-
-    } 
 
 } // Sets the number of rounds being played and stops when reached the limit so that the user can restart the game
 
@@ -133,15 +132,32 @@ let gameSection = document.querySelector('#game-section')
 
 function playAgain() {
     const buttonEl = `
+        <h1 class="end-message"></h1>
         <button id="playAgain-btn" class="play-again">
-            Play Again
+            Do you want to play again?
         </button>
+        <footer>
+            <h2>
+                &copy; 2023 Made with ❤️ by CARLOSDEV
+            </h2>
+        </footer>
     `
     gameSection.innerHTML = buttonEl
+    
+    let endMessage = document.querySelector('.end-message')
+    let endMessageChild
 
     const playAgainBtn = document.querySelector('#playAgain-btn')
     playAgainBtn.addEventListener('click', () => {
         return window.location.reload()
     })
+
+    if (win > lose) {
+        endMessageChild = `Congratulations! You defeat computer, you reached 5 points!`
+    } else {
+        endMessageChild = `Ohh, I'm sorry! You've been defeated, computer reached 5 points!`
+    }
+
+    endMessage.textContent = endMessageChild
 
 } // Sets everything back to the beginning so that the user can start playing again

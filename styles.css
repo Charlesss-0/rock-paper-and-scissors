@@ -17,11 +17,8 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    /* background: #2E8A99 */
-    background: #000;
-    color: #000;
-    height: 100vh;
+    background: #F2E7DC;
+    color: #fff;
 }
 
 /* BASIC PAGE SETTINGS END */
@@ -31,34 +28,39 @@ body {
 header {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 2em 0;
 }
 
 .title-container {
-    width: 90em;
-    height: 14em;
-    padding: 5px;
-    background-color: #ddd;
-    margin: 2em 0;
+    width: 95%;
+    height: 100%;
+    padding: 15px;
+    background-color: #000;
 }
 
 .title-container::before {
     content: '';
-    width: 90.5em;
-    height: 14.5em;
+    width: 94.85%;
+    height: 12em;
     position: absolute;
-    border: 4px solid #fff;
-    background-color: #000;
+    border: 4px solid #000;
+    background: repeating-linear-gradient(
+        45deg,
+        #000 4px,
+        #000 8px,
+        #fff 8px,
+        #fff 11px
+        );
     z-index: -1;
 }
 
 header h1 {
     font: 900 3.5rem Chakra Petch, sans-serif;
     text-align: center;
-    margin: 20px auto;
+    margin-bottom: 30px;
 }
 
-.scores {
+.scores  {
     display: flex;
 }
 
@@ -84,18 +86,16 @@ header h1 {
     align-items: center;
     justify-content: space-evenly;
     padding: 1rem;
-    margin: 2em 0;
-    color: #ddd;
 }
 
 .selection {
-    outline: 10px outset #fff;
-    width: 20em;
-    height: 20em;
+    border: outset #555;
+    width: 15em;
+    height: 15em;
     background: #ddd;
-    border-radius: 1em;
     text-align: center;
     display: grid;
+    box-shadow: 4px 4px 0 #000;
 }
 
 .selection img {
@@ -109,43 +109,55 @@ header h1 {
     place-content: center;
 }
 
-#results .selection p {
+.selection p {
     margin-top: 10px;
     font: 900 24px Chakra Petch, sans-serif;
     color: #000;
 }
 
-#results p {
-    font-size: 40px;
-}
-
 .round-result {
     font-weight: 900;
-    margin-top: 2em;
+    width: 15em;
 }
 
 #results h2 {
-    font-size: 55px;
+    font-size: 40px;
     font-family: 'Chakra Petch';
     text-align: center;
-    color: #ddd;
+    color: #000;
+}
+
+.choose-message {
+    width: 40%;
+    color: #000;
+    text-align: center;
+    font: 900 30px Chakra Petch, sans-serif;
+    animation: jumping 1s linear infinite;
+    margin: auto;
+}
+
+@keyframes jumping {
+    25% {
+        transform: scale(1.01);
+    }
+
+    75% {
+        transform: scale(0.95);
+    }
 }
 
 .selection-result {
     padding: 10px;
-    width: 30%;
 }
 
 .play-again {
-    height: 5em;
-    width: 20em;
-    background: #e0e0e0;
-    border: none;
-    border-radius: 20px;
+    height: 3em;
+    width: 15em;
+    background: #ccc;
+    border: outset #000;
     font: 900 3em Chakra Petch, sans-serif;
     text-align: center;
     cursor: pointer;
-    border: 10px outset;
     justify-self: center;
     margin-top: 1em;
     transition: all .2s linear;
@@ -153,7 +165,19 @@ header h1 {
 
 .play-again:hover {
     transform: translate(4px, -4px);
-    box-shadow: -8px 8px 0 0 #fff;
+    box-shadow: -8px 8px 0 0 #000;
+    background: #bbb;
+}
+
+.play-again:active {
+    transform: scale(0.97)
+}
+
+.end-message {
+    color: #000;
+    text-align: center;
+    margin-top: 2em;
+    font: 900 30px Chakra Petch, sans-serif;
 }
 
 /* RESULTS SECTION END */
@@ -178,12 +202,13 @@ header h1 {
     cursor: pointer;
     background: #ccc;
     font-size: 36px;
-    box-shadow: 8px 8px 0 #fff;
+    box-shadow: 8px 8px 0 #000;
     transition: all .2s linear;
 }
 
 .button-container button:hover {
-    box-shadow: -0px -0px 0 #fff;
+    box-shadow: -0px -0px 0 #000;
+    background: #bbb;
 }
 
 .button-container button:active {
@@ -196,13 +221,27 @@ header h1 {
 
 /* USER SELECTION END */
 
+/* FOOTER SECTION START */
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+footer h2 {
+    text-align: center;
+    color: #000;
+    font: 900 18px Chakra Petch, sans-serif;
+    padding: 5px;
+}
+
+/* FOOTER SECTION END */
+
 /* MEDIA QUERIES SECTION START */
 
 @media (max-width: 800px) {
-    header {
-        display: flex;
-        flex-direction: column;
-    }
 
     #results {
         height: 100%;
